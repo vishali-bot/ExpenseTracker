@@ -1,0 +1,165 @@
+
+/*===Balance==*/
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f0f2f5;
+    justify-content: center;
+    display: grid;
+    margin:0%;
+    
+}
+p{
+    color:red;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+input{
+    border-radius:5px;
+    width: 400px;
+    height:30px;
+}
+
+#search {
+    border-radius: 5px;
+    width: 200px;
+    height:30px;
+
+}
+select{
+    width: 320px;
+    height:30px;
+}
+input + select{
+    width: 190px;
+}
+
+h4{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: 20px;
+}
+ h4~p{
+    font-weight: bold;
+    font-size: 25px;  
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+.card{
+    display: inline-block;
+    background: lightgray;
+    border-radius:20px;
+    text-align:left ;
+   padding: 10px;
+   border: 2px solid black;
+    width: 300px;
+height: 100px;
+text-transform: uppercase;
+
+  letter-spacing: 0.05em;
+}
+
+.whole{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    display: flex;
+    gap: 10px;
+    margin: 50px;
+    grid-auto-columns: 200px;
+    height:100vh
+}
+
+/* @media(min-width){
+    main-grid{
+
+
+    }
+} */
+ 
+/*transactions*/
+
+.card2{
+    align-items: center;
+    display:inline-block;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 0%;
+    padding: 20PX;
+    height: 450px;
+    width: 400px;
+    max-height: 400px;
+}
+
+
+
+/*====type===*/
+
+button{
+    
+    cursor:pointer;
+    border-radius: 5px;
+    padding: 10px;
+    width: 190px;
+    background: lightgrey;
+    border-color: lightgrey;
+    color: white;
+    transition:all 0.3s ease; 
+    
+}
+
+/* #income:active{
+    background: #16a34a;
+  color:white;
+    border: greenyellow;
+}   */
+
+#Expense:active{
+    color:white;
+    background: #f17d7d;
+    border: red;
+
+} 
+#transaction{
+    width: 400px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(252, 164, 0);
+}
+#transaction:hover{
+    background: rgb(66, 66, 234);
+    
+}
+
+ul li{
+    list-style-type: disc;
+    padding: 2px;
+    font-size: 20px;
+}
+
+
+li.Income::marker { color: green; }
+
+li.Expense::marker { color: red; }
+
+
+.in{
+ color: green;
+}
+
+.bal{
+color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
