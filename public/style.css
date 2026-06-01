@@ -9,9 +9,9 @@ body{
     
 }
 p{
-    color:red;
+    color:rgb(211, 67, 67);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    
 }
 input{
     border-radius:5px;
@@ -107,6 +107,8 @@ button{
     
 }
 
+
+
 li button{
     background: #edd2d2;
     color: rgb(246, 103, 103);
@@ -132,10 +134,6 @@ ul li{
     background: #e66464;
     color: white;
 }
-
-
-
-
 
 
 

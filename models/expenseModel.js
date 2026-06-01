@@ -26,7 +26,17 @@ const getExpensesModel = async () => {
     return result.rows;
 };
 
+const deleteExpenseModel = async (id) => {
+
+    await pool.query(
+        "DELETE FROM ExpenseTracker WHERE sno = $1",
+        [id]
+    );
+
+};
+
 module.exports = {
     addExpenseModel,
-    getExpensesModel
+    getExpensesModel,
+    deleteExpenseModel
 };

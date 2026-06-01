@@ -65,20 +65,29 @@
        <h3>Transactions</h3> 
        <input type="text" id="search" name="search" placeholder="Search Transactions...">
        <br><br>
-       <select>
-        <option value="">All</option>
-            <option>Food</option>
-            <option>Transportation</option>
-            <option>Education</option>
+       <select  id="filter" onchange="renderTransactions()">
+        <option value="All">All</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+          <!-- <option>Education</option>
             <option>Entertainment</option>
             <option>Health</option>
             <option>Shopping</option>
             <option>Salary</option>
-            <option>Others</option>
+            <option>Others</option> --> 
         </select>
         <br><br>
-        <ul id="Transactions"></ul>
-        <p id="addTransactions"><center>No transactions yet.Add one above!</center></p>
+
+       <div class="transactions-container">
+
+    <ul id="Transactions"></ul>
+
+    <p id="emptyMessage" style="text-align: center;">
+        No transactions yet. Add one above!
+    </p>
+
+</div>
+       
        
     </div>
     </div>

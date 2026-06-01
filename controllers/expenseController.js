@@ -1,6 +1,7 @@
 const {
     addExpenseModel,
-    getExpensesModel
+    getExpensesModel,
+    deleteExpenseModel
 } = require("../models/expenseModel");
 
 const addExpense = async (req, res) => {
@@ -31,7 +32,24 @@ const getExpenses = async (req, res) => {
     }
 };
 
+const deleteExpense = async (req, res) => {
+
+    try {
+
+        await deleteExpenseModel(req.params.id);
+
+        res.json({ message: "Deleted" });
+
+    } catch (err) {
+
+        res.status(500).send(err.message);
+
+    }
+
+};
+
 module.exports = {
     addExpense,
-    getExpenses
+    getExpenses,
+    deleteExpense
 };

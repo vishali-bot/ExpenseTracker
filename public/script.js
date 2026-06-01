@@ -1,5 +1,5 @@
 
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+let transactions = [];
 let selectedType = "";
 
 
@@ -23,7 +23,6 @@ async function show() {
   const description = document.getElementById("description").value.trim();
   const amount = parseFloat(document.getElementById("amount").value);
   const category = document.getElementById("category").value;
-
   const result = document.getElementById("result");
 
   if (!description) {
@@ -53,9 +52,7 @@ else{
     category
   };
 
-  transactions.push(transaction);
-  localStorage.setItem("transactions", JSON.stringify(transactions));
-
+  
   // new
 try {
 
@@ -74,19 +71,31 @@ try {
 
 } //new
 
-  renderTransactions();
+ loadTransactions();
 
   document.getElementById("description").value = "";
   document.getElementById("amount").value = "";
 }
 
+async function deleteTransaction(id) {
 
-function deleteTransaction(id) {
-  transactions = transactions.filter(t => t.id !== id);
-  localStorage.setItem("transactions", JSON.stringify(transactions));
-  renderTransactions();
+    try {
+
+        console.log("Deleting:", id);
+
+        const response = await axios.delete(`/expenses/${id}`);
+
+        console.log(response.data);
+
+        loadTransactions();
+
+    } catch (err) {
+
+        console.error(err);
+
+    }
+
 }
-
 
 function updateSummary() {
 
@@ -116,34 +125,67 @@ function updateSummary() {
   "₹" + balance.toFixed(2);
 }
 
+async function loadTransactions() {
+  try {
+
+    const response = await axios.get("/expenses");
+
+    console.log("Data from database:", response.data);
+
+    transactions = response.data;
+
+    renderTransactions();
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+}
 
 function renderTransactions() {
 
-  const list = document.getElementById("Transactions");
-  const emptyMsg = document.getElementById("addTransactions");
+    const list = document.getElementById("Transactions");
+    const emptyMsg = document.getElementById("emptyMessage");
+    const filterValue = document.getElementById("filter").value;
 
-  list.innerHTML = "";
+    list.innerHTML = "";
 
-  if (transactions.length === 0) {
-    emptyMsg.style.display = "block";
-  } else {
-    emptyMsg.style.display = "none";
-  }
+    let filteredTransactions = transactions;
 
-  transactions.slice().reverse().forEach(t => {
+    if (filterValue === "Income") {
 
-    const li = document.createElement("li");
+        filteredTransactions = transactions.filter(
+            t => t.type === "Income"
+        );
 
-    li.innerHTML = `
-      ${t.description} - ${t.category} - ₹${t.amount}
-      <button onclick="deleteTransaction(${t.id})">X</button>
-    `;
+    } else if (filterValue === "Expense") {
 
-    list.appendChild(li);
-  });
+        filteredTransactions = transactions.filter(
+            t => t.type === "Expense"
+        );
 
-  updateSummary();
+    }
+
+    if (filteredTransactions.length === 0) {
+        emptyMsg.style.display = "block";
+    } else {
+        emptyMsg.style.display = "none";
+    }
+
+    filteredTransactions.slice().reverse().forEach(t => {
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            ${t.description} - ${t.category} - ₹${t.amount}
+            <button onclick="deleteTransaction(${t.sno})">X</button>
+        `;
+
+        list.appendChild(li);
+
+    });
+
+    updateSummary();
 }
-
-
-renderTransactions();
+loadTransactions();
